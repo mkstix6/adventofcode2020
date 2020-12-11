@@ -10,5 +10,8 @@
 		"files": [
 			"*/*test.mjs"
 		]
+	},
+	"dependencies": {
+		"chalk": "^4.1.0"
 	}
 }
