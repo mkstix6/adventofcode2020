@@ -1,3 +1,5 @@
+import chalk from "chalk";
+
 import data from "./data.mjs";
 
 const sumTarget = 2020;
@@ -12,7 +14,9 @@ sortedData.forEach((a) => {
       return false;
     }
     if (sumIsCorrect(a, b)) {
-      console.log(`${a} + ${b} = ${a + b} ∴ answer ${a * b}`);
+      console.log(
+        `${a} + ${b} = ${a + b} ∴ 01a answer = ${chalk.black.bgGreen(a * b)}`
+      );
     }
   });
 });
