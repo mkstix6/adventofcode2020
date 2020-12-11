@@ -1,0 +1,13 @@
+{
+	"scripts": {
+		"test": "ava"
+	},
+	"devDependencies": {
+		"ava": "^3.14.0"
+	},
+	"ava": {
+		"files": [
+			"*/*test.mjs"
+		]
+	}
+}
