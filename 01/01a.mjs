@@ -1,7 +1,8 @@
 import data from "./data.mjs";
 
 const sumTarget = 2020;
-const sumIsCorrect = (a, b) => a + b === sumTarget;
+const sum = (...args) => [...args].reduce((acc, val) => acc + val, 0);
+const sumIsCorrect = (...args) => sum(...args) === sumTarget;
 
 const sortedData = data.sort();
 
@@ -16,4 +17,4 @@ sortedData.forEach((a) => {
   });
 });
 
-export { sumTarget, sumIsCorrect };
+export { sum, sumTarget, sumIsCorrect };
