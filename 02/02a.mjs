@@ -19,5 +19,5 @@ const passwordItems = lines.map((plainText) => {
 });
 // Data ready.
 const numberOfValidPasswords = passwordItems.filter(validPassword).length;
-// Log answer
+// Log answer.
 console.log({ numberOfValidPasswords });
