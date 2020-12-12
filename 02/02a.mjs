@@ -1,5 +1,5 @@
 import fs from "fs";
-import validPassword from "./validPassword.mjs";
+import validPassword from "./validSledRentalPassword.mjs";
 // Use fs.readFile() method to read the file
 const data = fs.readFileSync("input.txt", "utf8");
 // split the contents by new line

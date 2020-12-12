@@ -1,5 +1,5 @@
 import test from "ava";
-import validPassword from "./validPassword.mjs";
+import validPassword from "./validSledRentalPassword.mjs";
 
 test(`validPassword() good input`, (t) => {
   const goodInput = { min: 1, max: 2, letter: "a", password: "aabbbbbbb" };
