@@ -11,5 +11,8 @@ const fileData = getFileData(dataFileLocation);
 // Count valid passports.
 const allDocuments = fileDataToDocumentObjects(fileData);
 const validPassports = allDocuments.filter(documentIsPassport);
-const puzzle04aAnswer = validPassports.length; // Number of valid passports.
-console.log("04a Answer:", puzzle04aAnswer);
+const puzzle04bAnswer = validPassports.length; // Number of valid passports.
+console.log(
+  "04b Answer:",
+  `${puzzle04bAnswer} valid passports out of ${allDocuments.length} documents`
+);
