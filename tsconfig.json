@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "target": "es2016",
+    "lib": [
+      "es6",
+      "dom",
+      "es2017"
+    ],
+    "moduleResolution": "node"
+  },
+  // "include": [
+  //   "./src/**/*"
+  // ]
+}
