@@ -2,8 +2,8 @@ inputFile = 'day5-puzzle-data.txt'
 # inputFile = 'example-data.txt'
 
 
-def countStringUniqueLetters(groupString): return len(
-    set([char for char in groupString]))
+def countStringUniqueLetters(groupString):
+    return len(set([char for char in groupString]))
 
 
 # Import puzzle file data
@@ -14,14 +14,17 @@ with open(inputFile) as f:
 groups = []
 group = ''
 for x in range(len(allData)):
+    # if group is empty add the first person's value
     person = allData.pop(0)
     person = person.strip('\n')
     if person == '':
         if group != '':
             groups.append(group)
             group = ''
+    if group == '':
+        group = person
     else:
-        group += person
+        group = set(group).intersection(person)
     if len(allData) == 0:
         groups.append(group)
 
