@@ -89,10 +89,4 @@ class BagRulesProcessor {
   }
 }
 
-// const countBagColors = (input) => {
-//   const regexMatchBagColor = /\w+\W\w+\Wbag/g;
-//   const chunks = input.match(regexMatchBagColor);
-//   return chunks.length;
-// };
-
 export { BagRulesProcessor };
