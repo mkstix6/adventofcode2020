@@ -12,6 +12,7 @@
 		]
 	},
 	"dependencies": {
-		"chalk": "^4.1.0"
+		"chalk": "^4.1.0",
+		"file-system": "^2.2.2"
 	}
 }
