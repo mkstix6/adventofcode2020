@@ -4,6 +4,7 @@ class BagRulesProcessor {
   terminatorBagColorString = "no other";
   regexMatchBagColor = /(?<colorname>\w+\W\w+)\Wbag/g;
   outerBagPossibilities = [];
+  defaultTargetColor = "shiny gold";
 
   constructor(inputData) {
     this.input = inputData;
@@ -80,8 +81,7 @@ class BagRulesProcessor {
     // TODO Find all the bag colors that can be nested inside targetColor bag
   }
 
-  get puzzleAnswer() {
-    const targetColor = "shiny gold";
+  puzzleAnswer(targetColor = this.defaultTargetColor) {
     this.huntColorContainers(targetColor);
     // Count chains that can contain gold.
     // Filter out gold chain itself (because we're only interested in bags that contain gold bags).

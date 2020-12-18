@@ -66,7 +66,7 @@ test(`get countBagRules test`, (t) => {
 });
 
 test(`get puzzleAnswer test`, (t) => {
-  t.is(bagsObject.puzzleAnswer, example.puzzleAnswer);
+  t.is(bagsObject.puzzleAnswer(), example.puzzleAnswer);
 });
 
 test(`convertRuleStringToRuleStructure test`, (t) => {
