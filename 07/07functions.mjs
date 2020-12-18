@@ -2,7 +2,7 @@ class BagRulesProcessor {
   input;
   answer;
   terminatorBagColorString = "no other";
-  regexMatchBagColor = /\w+\W\w+\Wbag/g;
+  regexMatchBagColor = /(?<colorname>\w+\W\w+)\Wbag/g;
   outerBagPossibilities = [];
 
   constructor(inputData) {
@@ -11,20 +11,22 @@ class BagRulesProcessor {
 
   convertRuleStringToRuleStructure(ruleString) {
     // split container from contents
-    const [containerString, contentsString] = ruleString.split("contain");
-    const containerColor = containerString
-      .match(this.regexMatchBagColor)
-      .map((color) => color.replace(" bag", ""));
-    const contentsColors = contentsString
-      .match(this.regexMatchBagColor)
-      .map((color) => color.replace(" bag", ""))
-      // filter out terminator color
-      .filter((color) => color.trim() !== this.terminatorBagColorString)
-      .filter((color) => color !== "");
+    const [containerColor, ...contentsColors] = this.regexColors(ruleString);
     return {
-      color: containerColor[0],
+      color: containerColor,
       contents: contentsColors.sort(),
     };
+  }
+
+  regexColors(string) {
+    return (
+      string
+        .match(this.regexMatchBagColor)
+        .map((color) => color.replace(" bag", ""))
+        // filter out terminator color
+        .filter((color) => color.trim() !== this.terminatorBagColorString)
+        .filter((color) => !!color)
+    );
   }
 
   get bagRules() {
@@ -40,12 +42,8 @@ class BagRulesProcessor {
   }
 
   get bagColors() {
-    const chunks = this.input.match(this.regexMatchBagColor);
+    const chunks = this.regexColors(this.input);
     let uniqueColors = [...new Set(chunks)];
-    // Remove ' bag' suffix from each.
-    uniqueColors = uniqueColors.map((colorString) =>
-      colorString.replace(" bag", "")
-    );
     // Remove null bag.
     uniqueColors = uniqueColors.filter(
       (text) => text !== this.terminatorBagColorString
