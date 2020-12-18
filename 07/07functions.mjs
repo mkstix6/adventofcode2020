@@ -60,7 +60,6 @@ class BagRulesProcessor {
     const colorsOfBagsThatContainTargetColor = this.bagRules
       .filter((rule) => rule.contents.includes(targetColor))
       .map((rule) => rule.color);
-    // console.log({ targetColor, colorsOfBagsThatContainTargetColor });
     // Follow chain if color hasn't already been searched before.
     colorsOfBagsThatContainTargetColor.forEach((containerColor) => {
       // Check if these colors have already been followed.
