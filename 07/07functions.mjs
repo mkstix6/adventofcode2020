@@ -71,9 +71,11 @@ class BagRulesProcessor {
     });
     // Add matched container colors to final list.
     this.outerBagPossibilities = [
-      ...colorsOfBagsThatContainTargetColor,
-      ...this.outerBagPossibilities,
-    ];
+      ...new Set([
+        ...colorsOfBagsThatContainTargetColor,
+        ...this.outerBagPossibilities,
+      ]),
+    ].sort();
   }
 
   huntColorContents(targetColor) {
