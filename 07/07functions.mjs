@@ -75,6 +75,11 @@ class BagRulesProcessor {
     ];
   }
 
+  huntColorContents(targetColor) {
+    // FIXME write this function for puzzle 07b
+    // TODO Find all the bag colors that can be nested inside targetColor bag
+  }
+
   get puzzleAnswer() {
     const targetColor = "shiny gold";
     this.huntColorContainers(targetColor);
