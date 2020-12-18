@@ -41,8 +41,8 @@ class BagRulesProcessor {
   }
 
   get bagColors() {
-    const chunks = this.regexColors(this.input);
-    let uniqueColors = [...new Set(chunks)];
+    const colors = this.regexColors(this.input);
+    let uniqueColors = [...new Set(colors)];
     // Remove null bag.
     uniqueColors = uniqueColors.filter(
       (text) => text !== this.terminatorBagColorString
