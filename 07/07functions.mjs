@@ -18,15 +18,13 @@ class BagRulesProcessor {
     };
   }
 
-  regexColors(string) {
-    return (
-      string
-        .match(this.regexMatchBagColor)
-        .map((color) => color.replace(" bag", ""))
-        // filter out terminator color
-        .filter((color) => color.trim() !== this.terminatorBagColorString)
-        .filter((color) => !!color)
-    );
+  regexColors(inputString) {
+    return Array.from(
+      inputString.matchAll(this.regexMatchBagColor),
+      (matchResult) => {
+        return matchResult.groups.colorname;
+      }
+    ).filter((color) => color.trim() !== this.terminatorBagColorString);
   }
 
   get bagRules() {
