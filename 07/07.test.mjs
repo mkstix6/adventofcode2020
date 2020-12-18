@@ -78,8 +78,3 @@ test(`convertRuleStringToRuleStructure test`, (t) => {
     }
   );
 });
-
-// test(`validPassword() bad input`, (t) => {
-//   const badInput = { min: 1, max: 2, letter: "a", password: "bcd" };
-//   t.false(validPassword(badInput));
-// });
