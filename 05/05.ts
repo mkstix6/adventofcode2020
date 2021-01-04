@@ -1,7 +1,6 @@
 import { seatCodeToProperties } from "./day5-functions";
 // Read in puzzle input data.
-// import module "file-system";
-var fs = require('fs');
+import * as fs from "file-system";
 const data = fs.readFileSync("./day5-puzzle-input.txt", "utf8");
 const lines = data.split(/\r?\n/);
 
