@@ -1,0 +1,28 @@
+{
+  "name": "05",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "testw": "ava --watch",
+    "build": "tsc --downlevelIteration ./05.ts",
+    "watch": "npm run build -- -w",
+    "prestart": "npm run build",
+    "start": "node ./05.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "ava": {
+    "files": [
+      "*.test.mjs"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.19",
+    "assert": "^2.0.0",
+    "ava": "^3.15.0",
+    "file-system": "^2.2.2"
+  },
+  "dependencies": {}
+}
