@@ -12,3 +12,4 @@ const largest = Math.max(...seatIDs)
 const answer = largest
 
 console.log('Answer for 05a: ', answer)
+// Your puzzle answer was 928.
