@@ -1,0 +1,19 @@
+{
+  "name": "10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --downlevelIteration ./10.ts",
+    "watch": "npm run build -- -w",
+    "prestart": "npm run build",
+    "start": "node ./10.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.14.19",
+    "file-system": "^2.2.2"
+  },
+  "dependencies": {}
+}
