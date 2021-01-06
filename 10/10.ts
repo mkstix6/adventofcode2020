@@ -15,22 +15,54 @@ const formatInputData = (input: number[]): number[] => [
   getDeviceJoltage(input),
 ];
 
-const formattedInputData: number[] = formatInputData(dataFilesLines);
-
-const howManyOneSteps = (input: number[]): number => {
+const getGapCounter = (gapSize: number) => (input: number[]): number => {
   let count = 0;
   for (let i = 0; i < input.length - 1; i++) {
-    if (input[i] + 1 === input[i + 1]) count++;
+    if (input[i] + gapSize === input[i + 1]) count++;
   }
   return count;
 };
 
-const howManyThreeSteps = (input: number[]): number => {
-  let count = 0;
-  for (let i = 0; i < input.length - 1; i++) {
-    if (input[i] + 3 === input[i + 1]) count++;
+const howManyOneSteps: (numbers: number[]) => number = getGapCounter(1);
+const howManyThreeSteps: (numbers: number[]) => number = getGapCounter(3);
+
+const howManyCombinations = (input: number[]): number => {
+  // Assess consecutive-number-sausages along number chain.
+  const sausages = [[0]];
+  let sausageIndex = 0;
+  for (let i = 1; i < input.length; i++) {
+    if (input[i - 1] !== input[i] - 1) {
+      // Create new sausage.
+      sausageIndex++;
+      sausages[sausageIndex] = [];
+    }
+    sausages[sausageIndex].push(input[i]);
   }
-  return count;
+  // Count lengths of sausages.
+  const chainLengthsCounts = [];
+  sausages.forEach((sausage: number[]) => {
+    if (!chainLengthsCounts[sausage.length]) {
+      chainLengthsCounts[sausage.length] = 0;
+    }
+    chainLengthsCounts[sausage.length]++;
+  });
+  // Compute number of solutions from sausage lengths.
+  // chain of 1 = 1 permutations
+  // chain of 2 = 1 permutations
+  // chain of 3 = 2 permutations
+  // chain of 4 = 4 permutations
+  // chain of 5 = 7 permutations
+  // chain of 6 = 12 permutations
+  // chain of 7 = 24 permutations
+  let solutionsForChainLength: number[] = [0, 1, 1, 2, 4, 7, 12, 24];
+  const numberOfSolutions: number = sausages
+    .map((sausage) => sausage.length)
+    .reduce((accumulator, sausageLength) => {
+      const newAmount = solutionsForChainLength[sausageLength];
+      return accumulator * newAmount;
+    }, 1);
+  // Return answer.
+  return numberOfSolutions;
 };
 
 /**
@@ -43,6 +75,7 @@ const howManyThreeSteps = (input: number[]): number => {
     expectedOneSteps: 7,
     expectedTwoSteps: 0,
     expectedThreeSteps: 5,
+    expectedArrangementPossibilities: 8,
   },
   {
     input: [
@@ -82,6 +115,7 @@ const howManyThreeSteps = (input: number[]): number => {
     expectedOneSteps: 22,
     expectedTwoSteps: 0,
     expectedThreeSteps: 10,
+    expectedArrangementPossibilities: 19208,
   },
 ].forEach((example, exampleIndex) => {
   const sortedExampleInput = formatInputData(example.input);
@@ -106,12 +140,23 @@ const howManyThreeSteps = (input: number[]): number => {
       sortedExampleInput
     )}; expected ${example.expectedThreeSteps}.`
   );
+  // Test howManyCombinations()
+  if (example.expectedArrangementPossibilities) {
+    console.assert(
+      howManyCombinations(sortedExampleInput) ===
+        example.expectedArrangementPossibilities,
+      `#${exampleIndex} Unexpected howManyCombinations() result ${howManyCombinations(
+        sortedExampleInput
+      )}; expected ${example.expectedArrangementPossibilities}.`
+    );
+  }
 });
 
 /**
  * Problem 10a
  * What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?
  */
+const formattedInputData: number[] = formatInputData(dataFilesLines);
 const count1steps: number = howManyOneSteps(formattedInputData);
 const count3steps: number = howManyThreeSteps(formattedInputData);
 // What is the number of 1-jolt differences multiplied by the number of 3-jolt differences?
@@ -123,3 +168,18 @@ console.log(
   answer10a === 2775 ? `(Confirmed correct answer)` : `(Incorrect answer)`
 );
 // Correct answer for 10a was 2775.
+
+/**
+ * Problem 10b
+ * What is the total number of distinct ways you can arrange the adapters to connect the charging outlet to your device?
+ */
+const answer10b: number = howManyCombinations(formattedInputData);
+// Print 10b result.
+console.log(
+  `Answer for puzzle 10b`,
+  answer10b,
+  answer10b === 518344341716992
+    ? `(Confirmed correct answer)`
+    : `(Incorrect answer)`
+);
+// Correct answer for 10b was 518344341716992.
