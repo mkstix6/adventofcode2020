@@ -1,4 +1,4 @@
-# Advent of code 2020 – Mark Stickling
+# [Advent of Code 2020](https://adventofcode.com/2020) – Mark Stickling
 
 [stickling.co.uk](https://stickling.co.uk/posts/advent-of-code-2020)
 
